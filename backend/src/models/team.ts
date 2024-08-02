@@ -8,6 +8,10 @@ const PlayerSchema: Schema = new Schema({
     image: { 
         type: String,
         required: true
+    },
+    id: { 
+        type: String,
+        required: true
     }
 });
 
@@ -18,6 +22,7 @@ export interface TeamType extends Document {
     players: Array<{
         name: string;
         image: string;
+        id: string;
     }>;
 }
 

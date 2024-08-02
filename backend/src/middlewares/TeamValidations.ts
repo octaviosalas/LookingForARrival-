@@ -29,8 +29,6 @@ export const validateNumberOfUserTeams = async (req: Request, res: Response, nex
     
        const userTeams = await Team.find({createdBy: userId})
 
-       console.log(" - Middleware validateNumberOfUserTeams", userTeams.length)
-
        if(userTeams.length >= 2) { 
         res.status(400).json("No puedes agregar mas de dos equipos")
        } else {
@@ -82,3 +80,24 @@ export const validateTeamOwnerIsUser = async (req: Request, res: Response, next:
     }
 }
 
+
+export const validateTeamQuantityPlayers = async (req: Request, res: Response, next: NextFunction) => { 
+     
+    const { teamId } = req.params
+
+    try {
+       const teamSelected = await Team.findById(teamId)
+       const players = teamSelected.players.length
+       console.log("Tiene", players)
+       
+       if(players >= 5) { 
+        res.status(404).json("Este equipo ya cuenta con 5 jugadores")
+       } else { 
+        next()
+       }
+    
+    } catch (error) {
+        console.log(error)
+        res.status(500).json("Hubo un error en el midddleware")
+    }
+}

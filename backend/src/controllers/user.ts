@@ -25,7 +25,8 @@ export const addUserToNewTeam = async (req: Request, res: Response) => {
        
         teamChoosen.players.push({ 
             name: req.body.playerName,
-            image: req.body.playerImage
+            image: req.body.playerImage,
+            id: req.body.playerId
         })
         await teamChoosen.save();
 
