@@ -6,8 +6,7 @@ const PlayerSchema: Schema = new Schema({
         required: true
     },
     image: { 
-        type: String,
-        required: true
+        type: String
     },
     id: { 
         type: String,

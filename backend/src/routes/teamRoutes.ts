@@ -1,8 +1,8 @@
 import {Router} from "express"
 import {body, param} from "express-validator"
 import { handleErrors } from "../middlewares/Errors"
-import {validateTeamDoesNotExist, validateNumberOfUserTeams} from "../middlewares/TeamValidations"
-import {createTeam, usersTeams} from "../controllers/teams"
+import {validateTeamDoesNotExist, validateTeamExist,validateNumberOfUserTeams} from "../middlewares/TeamValidations"
+import {createTeam, usersTeams, editTeamName, deleteTeam} from "../controllers/teams"
 import { validateUserExist } from "../middlewares/UserValidations"
 
 const router = Router()
@@ -24,6 +24,19 @@ router.get("/userTeams/:userId",
         usersTeams
 )
 
+router.put("/changeName/:teamId",
+        param("teamId").isMongoId().withMessage("Equipo Invalido"),
+        body("name").notEmpty().withMessage("El nombre del equipo es obligatorio"),
+        handleErrors,
+        validateTeamExist,
+        editTeamName
+)
 
+router.delete("/deleteTeam/:teamId",
+        param("teamId").isMongoId().withMessage("Equipo Invalido"),
+        handleErrors,
+        validateTeamExist,
+        deleteTeam
+)
 
 export default router;

@@ -9,6 +9,12 @@ interface CreatedBy {
     name: string;
     _id: string;
   }
+
+  export interface newTeamPlayers {
+    id: string;
+    image: string;
+    name: string;
+  }
   
  export interface TeamType {
     createdBy: CreatedBy;

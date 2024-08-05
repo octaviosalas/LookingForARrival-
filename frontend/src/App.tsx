@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<Welcome />} />   
           <Route path="/main" element={<Main/>}/>
           <Route path="/myTeams" element={<MyTeams/>}/>
-          <Route path="/about" element={<CreateTeam/>}/>
+          <Route path="/createTeam" element={<CreateTeam/>}/>
         </Routes>
         <ToastContainer /> 
       </div>
