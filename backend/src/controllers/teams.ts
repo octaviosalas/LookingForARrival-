@@ -73,3 +73,27 @@ export const deleteTeam = async (req: Request, res: Response) => {
       res.status(500).json({message: "error", error})
   }
 }
+
+export const addPlayersToTeam = async (req: Request, res: Response) => { 
+
+  const {teamId} = req.params
+  const { players } = req.body
+
+  try {
+
+     const teamSelected = await Team.findById(teamId)
+     teamSelected.players.push(...players)
+     await teamSelected.save()
+     if(players.length === 1) { 
+      res.status(200).send("Jugador añadido con exito")
+     } else { 
+      res.status(200).send("Jugadores añadidos con exito")
+     }
+
+
+     
+  } catch (error) {
+      console.log(error)
+      res.status(500).json({message: "error", error})
+  }
+}

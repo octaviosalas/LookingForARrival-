@@ -88,7 +88,6 @@ export const validateTeamQuantityPlayers = async (req: Request, res: Response, n
     try {
        const teamSelected = await Team.findById(teamId)
        const players = teamSelected.players.length
-       console.log("Tiene", players)
        
        if(players >= 5) { 
         res.status(404).json("Este equipo ya cuenta con 5 jugadores")
@@ -101,3 +100,56 @@ export const validateTeamQuantityPlayers = async (req: Request, res: Response, n
         res.status(500).json("Hubo un error en el midddleware")
     }
 }
+
+export const validateHowMuchPlayers = async (req: Request, res: Response, next: NextFunction) => { 
+     
+    const { teamId } = req.params
+    const { players } = req.body
+
+    try {
+       const teamSelected = await Team.findById(teamId)
+       const actualQuantity = teamSelected.players.length
+       const newQuantity = players.length
+
+       if(actualQuantity + newQuantity > 5) { 
+        res.status(404).send("La cantidad de jugadores que deseas añadir supera los 5 posibles")
+       } else { 
+        next()
+       }
+    
+    } catch (error) {
+        console.log(error)
+        res.status(500).json("Hubo un error en el midddleware")
+    }
+}
+
+export const validateIfAnyPlayerIsOnTheOtherTeam = async (req: Request, res: Response, next: NextFunction) => {
+    const { userId, teamId } = req.params;
+    const { players } = req.body;
+
+    console.log("ME LLEGO!", userId)
+    console.log("ME LLEGO PLAYERS REQUEST BODY!", players)
+  
+    try {
+      const teams = await Team.find({ createdBy: userId, _id: { $ne: teamId } });
+      console.log("OTROS EQUIPOS", teams)
+      const newPlayerIds = players.map((player: any) => player.id);
+      console.log("newPlayerIds", newPlayerIds)
+  
+
+      const playerExists = teams.some(team => 
+        team.players.some((player: any) => newPlayerIds.includes(player.id))
+      );
+  
+      if (playerExists) {
+        console.log(playerExists)
+        return res.status(404).send('Uno o más jugadores ya existen en otros equipos');
+      } else { 
+        next(); 
+      }
+  
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Hubo un error en el middleware', error });
+    }
+  };

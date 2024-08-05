@@ -39,9 +39,7 @@ const Welcome = () => {
 
        <div className='w-screen lg:w-2/4 h-auto lg:h-screen '>
            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
-             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"> BIENVENIDO </h2>
-              </div>
+             
               {!hiddenButtons ?
                     <div className='flex flex-col lg:flex-row items-center justify-center mt-4 gap-6 '>
                         <button className='w-72 h-10 bg-blue-500 font-medium text-white rounded-md' onClick={() => wannaLogin()}>Tengo cuenta</button>

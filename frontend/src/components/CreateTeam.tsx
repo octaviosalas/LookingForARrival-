@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import backendUrl from "../config/apiUrl"
 import { userStore } from "../store/store"
 import handleError from "../utils/handleAxiosErrors"
@@ -70,6 +70,10 @@ const CreateTeam = () => {
         console.log(response.data)
         setPossiblePlayers(response.data)
         setLoad(false)
+        if (response.status === 404 || ('error' in response.data && response.data.error)) { 
+          errorToastView("No se encontraron jugadores")
+          resetSearch()
+        }
         } catch (error) {
         handleError(error, setLoad)
         }
@@ -104,7 +108,6 @@ const CreateTeam = () => {
             name: playerData.player_name,
             image: playerData.player_image,
           };
-      
           setNewTeamPlayersData(prevState => [...prevState, newPlayer]);
           succesToastView("Añadido correctamente")
         } else {
@@ -127,9 +130,7 @@ const CreateTeam = () => {
         setShowInput(false)
       }
 
-      useEffect(() => { 
-       console.log(newTeamPlayersData)
-      }, [newTeamPlayersData])
+
 
 
   return (

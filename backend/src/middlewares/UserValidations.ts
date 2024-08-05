@@ -25,7 +25,7 @@ export const validateUserNameExist = async (req: Request, res: Response, next: N
     const { name } = req.body
 
     try {
-       const user = await User.findOne({name: name})
+        const user = await User.findOne({ name: { $regex: new RegExp(`^${name}$`, 'i') } });
 
        if(!user) { 
         res.status(400).json(`No se encontro un usuario registrado con el nombre ${name}`)

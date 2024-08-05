@@ -15,7 +15,7 @@ const NewTeamList = ({playersData, remove}: Props) => {
                     <img src={pp.image} className="rounded-xl w-6 h-6"/>
                     <p>{pp.name}</p>
                 </div>
-                <div>
+                <div className="">
                     <p className="cursor-pointer" onClick={() => remove(pp.id)}>X</p>
                 </div>
               </div>

@@ -1,8 +1,8 @@
 import {Router} from "express"
 import {body, param} from "express-validator"
 import { handleErrors } from "../middlewares/Errors"
-import {validateTeamDoesNotExist, validateTeamExist,validateNumberOfUserTeams} from "../middlewares/TeamValidations"
-import {createTeam, usersTeams, editTeamName, deleteTeam} from "../controllers/teams"
+import {validateTeamDoesNotExist, validateTeamExist,validateNumberOfUserTeams, validateHowMuchPlayers, validateIfAnyPlayerIsOnTheOtherTeam} from "../middlewares/TeamValidations"
+import {createTeam, usersTeams, editTeamName, deleteTeam, addPlayersToTeam} from "../controllers/teams"
 import { validateUserExist } from "../middlewares/UserValidations"
 
 const router = Router()
@@ -37,6 +37,15 @@ router.delete("/deleteTeam/:teamId",
         handleErrors,
         validateTeamExist,
         deleteTeam
+)
+
+router.post("/addNewPlayer/:teamId/:userId",
+        param("teamId").isMongoId().withMessage("Equipo Invalido"),
+        body("players").notEmpty().withMessage("Debes añadir al menos un jugador"),
+        handleErrors,
+        validateHowMuchPlayers,
+        validateIfAnyPlayerIsOnTheOtherTeam,
+        addPlayersToTeam
 )
 
 export default router;
