@@ -60,8 +60,8 @@ const Login = ({cancelOperation}: Props) => {
                         </div>
                  </div>
                  <div className='flex flex-col items-center justify-center mt-4'>
-                     <button className='w-72 h-10 bg-blue-500 font-medium text-white rounded-md' onClick={() => createUser()}>Ingresar</button>
-                     <button className='w-72 h-10 mt-2 bg-blue-500 font-medium text-white rounded-md' onClick={() => cancelOperation()}>Cancelar</button>
+                     <button className='w-full h-10 bg-blue-500 font-medium text-white rounded-md' onClick={() => createUser()}>Ingresar</button>
+                     <button className='w-full h-10 mt-2 bg-blue-500 font-medium text-white rounded-md' onClick={() => cancelOperation()}>Cancelar</button>
                  </div>
                  {load ? <div> Cargando..  </div> : null}
        </div>

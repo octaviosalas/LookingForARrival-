@@ -138,7 +138,7 @@ const AddNewPlayer = ({teamData, getTeams}: Props) => {
           }
 
                  {possiblePlayers.length > 0 ? 
-                  <div className="flex flex-col items-start justify-start  overflow-y-auto max-h-[400px]">
+                  <div className="flex flex-col items-start justify-start  overflow-y-auto max-h-[100px] lg:max-h-[140px]  2xl:max-h-[220px]">
                       {possiblePlayers.map((pp) => (
                           <div className="flex flex-col items-start justify-start" key={pp.player_id}>
                               <p className="cursor-pointer font-medium" onClick={() => addPlayer(pp)}> {pp.player_complete_name}</p>

@@ -137,7 +137,7 @@ const CreateTeam = () => {
     <div className="flex items-center">
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">         
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-2 2xl:mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Crear Nuevo equipo
             </h2>
           </div>
@@ -162,14 +162,14 @@ const CreateTeam = () => {
               <div className="flex flex-col items-center">
               <button
                   type="button"
-                  className="flex mt-4 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex mt-4 w-full justify-center rounded-md bg-blue-500 text-white px-3 py-1.5 text-sm font-semibold "
                   onClick={() => goToAddPlayers()}
               >
                   Añadir Jugadores
                 </button>
                 <button
                   type="button"
-                  className="flex mt-3 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex mt-3 w-full justify-center rounded-md bg-blue-500 text-white px-3 py-1.5 text-sm font-semibold "
                   onClick={() => createNewTeam()}
               >
                   Crear Equipo
@@ -199,7 +199,7 @@ const CreateTeam = () => {
           
 
               {possiblePlayers.length > 0 ? 
-                  <div className="flex flex-col items-start justify-start  overflow-y-auto max-h-[400px]">
+                  <div className="flex flex-col items-start justify-start overflow-y-auto max-h-[100px] lg:max-h-[140px]  2xl:max-h-[220px]">
                       {possiblePlayers.map((pp) => (
                           <div className="flex flex-col items-start justify-start" key={pp.player_id}>
                               <p className="cursor-pointer font-medium" onClick={() => addPlayer(pp)}> {pp.player_complete_name}</p>

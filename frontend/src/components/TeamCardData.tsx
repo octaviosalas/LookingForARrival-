@@ -89,7 +89,7 @@ const TeamCardData = ({userTeams, getTeams}: Props) => {
                       onChange={handleChangeTeamName}
                     />
                     {newName.length > 0 && (
-                      <button className="bg-blue-500 text-white font-medium h-8 w-36 rounded-lg" onClick={changeTeamName}>Confirmar</button>
+                      <button className="bg-blue-500 text-white font-medium h-6 2xl:h-8 w-36 rounded-lg" onClick={changeTeamName}>Confirmar</button>
                     )}
                   </div>
                 )}
