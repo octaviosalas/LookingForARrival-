@@ -1,30 +1,24 @@
-# React + TypeScript + Vite
+¿Como levantar el proyecto?
+Al hacer el "git clone" del repositorio, el proyecto tendra dos carpetas. Frontend y Backend. En ambas carpetas se debe hacer "npm install" para instalar sus respectivas dependencias. Luego, ambos entornos se levantan con el comando "npm run dev".
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¿Como comenzar a usarlo?
+El primer paso debe ser la creacion de la cuenta. Haciendo click en el boton "Crear Cuenta" el sistema se dirijira hacia el modulo de Registro. 
+Alli se debe crear una cuenta con el nombre y edad del usuario. Una vez creada la cuenta, se puede iniciar a la misma introduciendo el nombre en la seccion "Tengo cuenta". El nombre se debe colocar tal cual fue colocado al crear la cuenta.
 
-Currently, two official plugins are available:
+RESUMEN:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Si bien la prueba es para una posicion frontend, soy desarrollador fullstack, por lo cual desarrolle una ApiRest sumamente segura con TypeScript + NodeJs + Express. Los datos decidi almacenarlos en una base de datos no relacional (MongoDB).
+ 
+Elegi MongoDB por una cuestion de costumbre y simplicidad, vale aclarar que tambien estoy acostumbrado a trabajar con PostgreSQL.
 
-## Expanding the ESLint configuration
+Intente designarle al backend la mayor parte de la logica y seguridad respetando los requisitos que pide la prueba, con la intencion de que el FrontEnd este lo menos cargado posible y funcione con la mayor eficacia posible.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+La reclutadora "Daiana Garcia" me comento, que si bien es una posicion Frontend, buscan alguien con conocimientos en backend, es por eso que decidi implementar Node en la prueba. 
 
-- Configure the top-level `parserOptions` property like this:
+Considere interesante poder mostrar mis conocimientos en dicho entorno para que tengan en cuenta que puedo funcionar como fullstack, de hecho es como vengo trabajando hace varios años.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Por ultimo, opte por utilizar React con Vite en lugar de NextJs tambien por costumbre. Esta demas decir, que cuando vean la claridad y nivel del codigo podran darse cuenta que no tendria problema en utilizar NextJs, la realidad es que no contaba con mucho tiempo y por eso opte por realizarla de la manera mas rapida y eficiente posible.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Espero les guste, al menos a mi parecer todo funciona como corresponde y el codigo esta correctamente implementado.
+Saludos, Octavio.
+Quedo atento a novedades.
