@@ -48,7 +48,7 @@ const Welcome = () => {
                         <button className='w-72 h-10 bg-blue-500 font-medium text-white rounded-md' onClick={() => wannaRegister()}>Crear cuenta</button>
                     </div> : null}
               <div>
-                {showRegister ? <Register cancelOperation={cancelOperation}/> : null}
+                {showRegister ? <Register cancelOperation={cancelOperation} goLogin={wannaLogin}/> : null}
                 {showLogin ? <Login cancelOperation={cancelOperation}/> :null}
               </div>
            </div>

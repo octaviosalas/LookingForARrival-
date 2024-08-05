@@ -13,7 +13,7 @@ export const createTeam = async (req: Request, res: Response) => {
          createdBy: userId
        })
        await teamToBeRegistered.save()
-       res.status(200).send("Has creado exitosamente tu equipo")
+       res.status(200).send(`Has creado exitosamente tu equipo ${name}`)
     } catch (error) {
         console.log(error)
         res.status(500).json({message: "error", error})

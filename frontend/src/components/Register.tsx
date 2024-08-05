@@ -7,15 +7,15 @@ import {toast} from "react-toastify"
 import {useNavigate } from 'react-router-dom'
 
 interface Props { 
-    cancelOperation: () => void
+    cancelOperation: () => void,
+    goLogin: () => void
 }
 
-const Register = ({cancelOperation}: Props) => {
+const Register = ({cancelOperation, goLogin}: Props) => {
 
     const [name, setName] = useState<string>("")
     const [age, setAge] = useState<number>(NaN)
     const [load, setLoad] = useState<boolean>(false)
-    const navigate = useNavigate()
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => { 
         setName(e.target.value)
@@ -40,7 +40,7 @@ const Register = ({cancelOperation}: Props) => {
                     pauseOnHover: false,
                     autoClose: 1500
                 });
-                navigate("/main")
+                goLogin()
 
             }
         } catch (error) {
@@ -63,7 +63,7 @@ const Register = ({cancelOperation}: Props) => {
                         </div>
                  </div>
                  <div className='flex flex-col items-center justify-center mt-4'>
-                     <button className='w-72 h-10 bg-blue-500 font-medium text-white rounded-md' onClick={() => createUser()}>Ingresar</button>
+                     <button className='w-72 h-10 bg-blue-500 font-medium text-white rounded-md' onClick={() => createUser()}>Crear Cuenta</button>
                      <button className='w-72 h-10 mt-2 bg-blue-500 font-medium text-white rounded-md' onClick={() => cancelOperation()}>Cancelar</button>
                  </div>
                  {load ? <div> Cargando..  </div> : null}
