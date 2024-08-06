@@ -101,7 +101,6 @@ const CreateTeam = () => {
 
       const addPlayer = (playerData: Player) => {
         const playerExists = newTeamPlayersData.some(player => player.id === playerData.player_id);
-      
         if (!playerExists) {
           const newPlayer: newTeamPlayers = {
             id: playerData.player_id,
@@ -112,8 +111,7 @@ const CreateTeam = () => {
           succesToastView("Añadido correctamente")
         } else {
           errorToastView("El juagdor ya existe en el equipo")
-        }
-      
+        }      
         setInputValue("");
         setShowingPlayers(false);
         setPossiblePlayers([]);

@@ -32,14 +32,15 @@ const AddNewPlayer = ({teamData, getTeams}: Props) => {
         setLoad(true) 
         try {
         const response = await axios.get(`https://apiv3.apifootball.com/?action=get_players&player_name=${name}&APIkey=2798f9e9f7a084d535ceaa8edbfaa35a14427bd94d3feb3d0a81e12c533914d5`); 
-        setPossiblePlayers(response.data)
         setLoad(false)
         if (response.status === 404 || ('error' in response.data && response.data.error)) { 
             errorToastView("No se encontraron jugadores")
             resetSearch()
+          } else {
+            setPossiblePlayers(response.data)
           }
         } catch (error) {
-        handleError(error, setLoad)
+           handleError(error, setLoad)
         }
       }
 
@@ -96,8 +97,9 @@ const AddNewPlayer = ({teamData, getTeams}: Props) => {
             if(status === 200) { 
                 succesToastView(data)
                 getTeams()
+                setNewTeamPlayersData([])
             } else { 
-                console.log("error")
+               errorToastView("Error al añadir jugadores");
             }
         } catch (error) {
             handleError(error, setLoad)
@@ -107,47 +109,74 @@ const AddNewPlayer = ({teamData, getTeams}: Props) => {
 
 
 
-  return (
+  return  (
     <div>
-         <input 
-         onChange={handleChangeInput} 
-         type="text" 
-         className="block w-full lg:w-2/4 mt-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 " value={inputValue}/>
+        <input 
+            onChange={handleChangeInput} 
+            type="text" 
+            className="block w-full  mt-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1" 
+            value={inputValue}
+        />
         
-         {!showingPlayers ? 
-             <div className="flex flex-col">
-                <div className='flex flex-col'>
+        {!showingPlayers ? (
+            <div className="flex flex-col">
+                {newTeamPlayersData.length > 0 && (
+                    <div className="flex w-full ">
+                        <NewTeamList playersData={newTeamPlayersData} remove={removePlayer} />
+                    </div>
+                )}
+                
+                <button 
+                    className="w-full  bg-blue-500 rounded-lg font-medium mt-4 text-white mb-2" 
+                    onClick={searchPlayer}
+                >
+                    Buscar
+                </button>
 
-                {newTeamPlayersData.length > 0 ?
-                  <div className="flex  w-full lg:w-2/4 ">
-                     <NewTeamList playersData={newTeamPlayersData} remove={removePlayer}/>
-                  </div> : null
-              }
+                {newTeamPlayersData.length > 0 && (
+                    <div className="flex w-full ">
+                        <button 
+                            className="w-full bg-blue-500 rounded-lg font-medium mt-1 text-white" 
+                            onClick={introducePlayersToTheTeam}
+                        >
+                            Añadir
+                        </button>
+                    </div>
+                )}
 
-                    <button className="w-full lg:w-2/4 bg-blue-500 rounded-lg font-medium mt-4 text-white mb-2" onClick={() => searchPlayer()}>Buscar</button>  
-                    {newTeamPlayersData.length > 0 ?
-                        <div className="flex w-full lg:w-2/4 ">
-                            <button  className="w-full bg-blue-500 rounded-lg font-medium mt-1 text-white" onClick={() => introducePlayersToTheTeam()}>Añadir</button>
-                        </div> : null
-                     }
-                   
-                    {load ? <div className='flex justify-center w-full lg:w-2/4 mt-2 mb-2'> <Spinner/> </div>: null}
+            </div>
+            
+        ) : (
+            <button 
+                className="w-full bg-blue-500 font-medium mt-4 text-white" 
+                onClick={resetSearch}
+            >
+                Resetear
+            </button>
+        )}
 
-                </div>                    
-             </div> : <button className="w-full lg:w-2/4 bg-blue-500 font-medium mt-4 text-white" onClick={() => resetSearch()}>Resetear</button>
-          }
+          {load && (
+              <div className="flex justify-center w-full  mt-2 mb-2">
+                <Spinner />
+              </div>
+           )}
 
-                 {possiblePlayers.length > 0 ? 
-                  <div className="flex flex-col items-start justify-start  overflow-y-auto max-h-[100px] lg:max-h-[140px]  2xl:max-h-[220px]">
-                      {possiblePlayers.map((pp) => (
-                          <div className="flex flex-col items-start justify-start" key={pp.player_id}>
-                              <p className="cursor-pointer font-medium" onClick={() => addPlayer(pp)}> {pp.player_complete_name}</p>
-                          </div>
-                      ))}
-                  </div> 
-              : null}
-    </div> 
-  )
+        {possiblePlayers.length > 0 && (
+            <div className="flex flex-col items-start justify-start overflow-y-auto max-h-[100px] lg:max-h-[140px] 2xl:max-h-[220px]">
+                {possiblePlayers.map((pp) => (
+                    <div className="flex flex-col items-start justify-start" key={pp.player_id}>
+                        <p 
+                            className="cursor-pointer font-medium" 
+                            onClick={() => addPlayer(pp)}
+                        >
+                            {pp.player_complete_name}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        )}
+    </div>
+);
 }
 
 export default AddNewPlayer

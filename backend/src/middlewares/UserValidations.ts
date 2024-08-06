@@ -30,7 +30,7 @@ export const validateUserNameExist = async (req: Request, res: Response, next: N
        if(!user) { 
         res.status(400).json(`No se encontro un usuario registrado con el nombre ${name}`)
        } else {
-        res.status(200).json({data: "Ingresando a tu cuenta", userData: user})
+        res.status(200).json({data: "Hola de nuevo!", userData: user})
         }
     
     } catch (error) {

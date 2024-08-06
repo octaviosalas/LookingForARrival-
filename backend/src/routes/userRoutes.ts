@@ -20,7 +20,6 @@ router.post("/login",
         validateUserNameExist
 )
 
-
 router.post("/addUserToTeam/:teamId/:userId",
         param("teamId").isMongoId().withMessage("Equipo Invalido"),
         param("userId").isMongoId().withMessage("Usuario Invalido"),
