@@ -1,5 +1,8 @@
 ¿Como levantar el proyecto?
-Al hacer el "git clone" del repositorio, el proyecto tendra dos carpetas. Frontend y Backend. En ambas carpetas se debe hacer "npm install" para instalar sus respectivas dependencias. Luego, ambos entornos se levantan con el comando "npm run dev".
+Al hacer el "git clone" del repositorio, el proyecto tendra dos carpetas. Frontend y Backend. 
+En ambas carpetas se debe hacer "npm install" para instalar sus respectivas dependencias. 
+Luego, en la carpeta "frontend", fuera de src (a la misma altura de la carpeta frontend) crear un archivo llamado: ".env.local" y escribir lo siguiente: VITE_API_URL="http://localhost:4000/api"
+Una vez hecho esto, ambos entornos se levantan con el comando "npm run dev".
 
 ¿Como comenzar a usarlo?
 El primer paso debe ser la creacion de la cuenta. Haciendo click en el boton "Crear Cuenta" el sistema se dirijira hacia el modulo de Registro. 
